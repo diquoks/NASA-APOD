@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:nasa_apod/presentation/themes/palette.dart';
 
 class CustomTheme extends ThemeExtension<CustomTheme> {
-  CustomTheme({required this.palette});
-
   final Palette palette;
+
+  CustomTheme({required this.palette});
 
   @override
   ThemeExtension<CustomTheme> copyWith() {
