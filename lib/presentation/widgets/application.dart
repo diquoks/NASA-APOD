@@ -16,7 +16,9 @@ class Application extends StatelessWidget {
       builder: (BuildContext context, Widget? widget) {
         return GetMaterialApp(
           title: "NASA APOD",
-          theme: ThemeData.dark().copyWith(extensions: [CustomTheme(palette: DarkPalette())]),
+          theme: ThemeData.dark().copyWith(
+            extensions: [CustomTheme(palette: DarkPalette())],
+          ),
           home: HomePage(),
           debugShowCheckedModeBanner: false,
         );

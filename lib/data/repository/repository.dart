@@ -1,4 +1,5 @@
 import "package:dio/dio.dart";
+
 import "package:nasa_apod/data/models/astronomy_picture_model.dart";
 
 abstract class Repository {

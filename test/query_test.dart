@@ -1,7 +1,7 @@
-import 'dart:io';
-import 'package:flutter_test/flutter_test.dart';
+import "dart:io";
+import "package:flutter_test/flutter_test.dart";
 
-import 'package:nasa_apod/domain/use_cases/query_use_case.dart';
+import "package:nasa_apod/domain/use_cases/query_use_case.dart";
 
 QueryUseCase useCase = QueryUseCase(startLoading: () {}, endLoading: () {});
 

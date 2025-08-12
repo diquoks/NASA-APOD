@@ -1,8 +1,8 @@
-import 'package:dio/dio.dart';
+import "package:dio/dio.dart";
 
-import 'package:nasa_apod/data/models/astronomy_picture_model.dart';
-import 'package:nasa_apod/data/repository/repository.dart';
-import 'package:nasa_apod/data/storage/storage.dart';
+import "package:nasa_apod/data/models/astronomy_picture_model.dart";
+import "package:nasa_apod/data/repository/repository.dart";
+import "package:nasa_apod/data/storage/storage.dart";
 
 class Client extends Repository {
   final Storage storage = mainStorage;

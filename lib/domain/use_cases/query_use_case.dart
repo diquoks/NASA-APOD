@@ -1,6 +1,6 @@
-import 'package:nasa_apod/data/models/astronomy_picture_model.dart';
-import 'package:nasa_apod/data/repository/client.dart';
-import 'package:nasa_apod/domain/services/query_helper.dart';
+import "package:nasa_apod/data/models/astronomy_picture_model.dart";
+import "package:nasa_apod/data/repository/client.dart";
+import "package:nasa_apod/domain/services/query_helper.dart";
 
 class QueryUseCase {
   final Function() startLoading;
