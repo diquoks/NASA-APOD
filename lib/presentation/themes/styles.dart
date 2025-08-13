@@ -10,7 +10,7 @@ class Styles {
 
   TextStyle get appBarTextStyle => TextStyle(
     fontFamily: "Inter",
-    fontSize: 18.sp,
+    fontSize: 18,
     height: 1,
     fontWeight: FontWeight.w500,
     color: palette.text,
@@ -18,7 +18,7 @@ class Styles {
 
   TextStyle get buttonTextStyle => TextStyle(
     fontFamily: "Inter",
-    fontSize: 20.sp,
+    fontSize: 20,
     height: 1,
     fontWeight: FontWeight.w500,
     color: palette.text,

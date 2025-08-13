@@ -1,3 +1,5 @@
+import 'package:dio/dio.dart';
+
 class QueryHelper {
   final Function() startLoading;
   final Function() endLoading;
@@ -7,7 +9,7 @@ class QueryHelper {
   Future<void> request<ResponseT>({
     required Future<ResponseT> Function() request,
     required void Function(ResponseT) onResponse,
-    required void Function(Exception) onError,
+    required void Function(String) onError,
   }) async {
     try {
       startLoading();
@@ -16,7 +18,18 @@ class QueryHelper {
       onResponse(response);
     } on Exception catch (e) {
       endLoading();
-      onError(e);
+      onError(castError(e));
     }
+  }
+
+  String castError(Exception e) {
+    if (e is DioException) {
+      if (e.response != null) {
+        if (e.response!.statusCode! == 403) {
+          return "API NASA может нестабильно работать в России,\nпопробуйте использовать VPN!";
+        }
+      }
+    }
+    return e.toString();
   }
 }

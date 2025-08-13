@@ -18,7 +18,7 @@ class QueryUseCase {
     int? count,
     bool? thumbs,
     required Function(AstronomyPictureModel) onResponse,
-    required Function(Exception) onError,
+    required Function(String) onError,
   }) async {
     await helper.request(
       request: () => client.getApod(
