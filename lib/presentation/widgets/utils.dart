@@ -22,17 +22,25 @@ void showLoading() {
   );
 }
 
-void showError(String e) {
+void showMessage({String? title, required String text}) {
   BuildContext context = Get.context as BuildContext;
   CustomTheme theme = CustomTheme.of(context);
   Get.dialog(
     AlertDialog(
       backgroundColor: theme.palette.bloc,
       shape: theme.styles.defaultShapeBorder,
+      title: (title != null)
+          ? Text(
+              title,
+              textAlign: TextAlign.center,
+              style: theme.styles.alertTitleTextStyle,
+            )
+          : null,
+      titlePadding: EdgeInsets.only(top: 24.r),
       content: Text(
-        e,
+        text,
         textAlign: TextAlign.center,
-        style: theme.styles.alertTextStyle,
+        style: theme.styles.alertContentTextStyle,
       ),
       contentPadding: EdgeInsets.all(24.r),
     ),

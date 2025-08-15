@@ -8,11 +8,19 @@ class Styles {
 
   Styles({required this.palette});
 
-  TextStyle get alertTextStyle => TextStyle(
+  TextStyle get alertContentTextStyle => TextStyle(
     fontFamily: "Inter",
     fontSize: 16.r,
     height: 1.5,
     fontWeight: FontWeight.w400,
+    color: palette.text,
+  );
+
+  TextStyle get alertTitleTextStyle => TextStyle(
+    fontFamily: "Inter",
+    fontSize: 20.r,
+    height: 1.5,
+    fontWeight: FontWeight.w600,
     color: palette.text,
   );
 

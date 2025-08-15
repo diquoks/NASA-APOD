@@ -41,7 +41,7 @@ class _HomePageState extends State<HomePage> {
           });
         },
         onError: (String e) {
-          showError(e);
+          showMessage(text: e);
         },
       );
     });
@@ -97,31 +97,43 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
           Padding(
-            padding: EdgeInsets.only(top: 24.r, bottom: 48.r),
+            padding: EdgeInsets.only(
+              top: 24.r,
+              bottom: 24.r + MediaQuery.of(context).padding.bottom,
+            ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 16.r),
+                  padding: EdgeInsets.symmetric(horizontal: 24.r),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       SizedBox.square(
                         dimension: 60.r,
-                        child: CustomIconButton(
-                          onPressed: () {
-                            showError("Недоступно");
-                          },
-                          icon: Icons.info,
+                        child: AnimatedOpacity(
+                          opacity: astronomyPictureModel != null ? 1 : 0,
+                          duration: Duration(milliseconds: 300),
+                          child: CustomIconButton(
+                            onPressed: (astronomyPictureModel != null)
+                                ? () {
+                                    showMessage(
+                                      title: astronomyPictureModel!.title,
+                                      text: astronomyPictureModel!.explanation,
+                                    );
+                                  }
+                                : null,
+                            icon: Icons.info,
+                          ),
                         ),
                       ),
                       SizedBox.square(
                         dimension: 60.r,
                         child: CustomIconButton(
                           onPressed: () {
-                            showError("Недоступно");
+                            showMessage(text: "Недоступно");
                           },
                           icon: Icons.settings,
                         ),
@@ -149,7 +161,7 @@ class _HomePageState extends State<HomePage> {
                                   });
                                 },
                                 onError: (String e) {
-                                  showError(e);
+                                  showMessage(text: e);
                                 },
                               );
                             },
@@ -161,7 +173,7 @@ class _HomePageState extends State<HomePage> {
                         dimension: 60.r,
                         child: CustomIconButton(
                           onPressed: () {
-                            showError("Недоступно");
+                            showMessage(text: "Недоступно");
                           },
                           icon: Icons.calendar_month,
                         ),
