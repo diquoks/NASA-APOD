@@ -23,7 +23,7 @@ class _CustomTextButtonState extends State<CustomTextButton> {
     return FilledButton(
       onPressed: widget.onPressed,
       style: theme.styles.textButtonBorder,
-      child: Text(widget.text, style: theme.styles.buttonTextStyle),
+      child: Text(widget.text, textAlign: TextAlign.center, style: theme.styles.buttonTextStyle),
     );
   }
 }

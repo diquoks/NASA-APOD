@@ -8,9 +8,17 @@ class Styles {
 
   Styles({required this.palette});
 
+  TextStyle get alertTextStyle => TextStyle(
+    fontFamily: "Inter",
+    fontSize: 16.r,
+    height: 1.5,
+    fontWeight: FontWeight.w400,
+    color: palette.text,
+  );
+
   TextStyle get appBarTextStyle => TextStyle(
     fontFamily: "Inter",
-    fontSize: 18,
+    fontSize: 18.r,
     height: 1,
     fontWeight: FontWeight.w500,
     color: palette.text,
@@ -18,7 +26,7 @@ class Styles {
 
   TextStyle get buttonTextStyle => TextStyle(
     fontFamily: "Inter",
-    fontSize: 20,
+    fontSize: 20.r,
     height: 1,
     fontWeight: FontWeight.w500,
     color: palette.text,
@@ -27,18 +35,17 @@ class Styles {
   ButtonStyle get iconButtonBorder => FilledButton.styleFrom(
     backgroundColor: palette.bloc,
     padding: EdgeInsets.all(18.r),
-    shape: RoundedRectangleBorder(
-      side: BorderSide.none,
-      borderRadius: BorderRadius.all(Radius.circular(18.r)),
-    ),
+    shape: defaultShapeBorder,
   );
 
   ButtonStyle get textButtonBorder => FilledButton.styleFrom(
     backgroundColor: palette.bloc,
     padding: EdgeInsets.all(20.r),
-    shape: RoundedRectangleBorder(
-      side: BorderSide.none,
-      borderRadius: BorderRadius.all(Radius.circular(18.r)),
-    ),
+    shape: defaultShapeBorder,
+  );
+
+  OutlinedBorder get defaultShapeBorder => RoundedRectangleBorder(
+    side: BorderSide.none,
+    borderRadius: BorderRadius.all(Radius.circular(18.r)),
   );
 }

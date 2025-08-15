@@ -1,6 +1,7 @@
 import "package:flutter/material.dart";
 import "package:flutter/scheduler.dart";
 import "package:flutter_screenutil/flutter_screenutil.dart";
+import "package:flutter_svg/svg.dart";
 import "package:get/get.dart";
 
 import "package:nasa_apod/data/models/astronomy_picture_model.dart";
@@ -57,25 +58,52 @@ class _HomePageState extends State<HomePage> {
         alignment: Alignment.center,
         fit: StackFit.expand,
         children: [
-          InteractiveViewer(
-            clipBehavior: Clip.none,
-            child: (astronomyPictureModel != null)
-                ? Image.network(astronomyPictureModel!.hdurl!)
-                : Center(
-                    child: CircularProgressIndicator(
-                      backgroundColor: Colors.transparent,
-                      color: theme.palette.icon,
-                    ),
-                  ),
-          ),
+          if (astronomyPictureModel != null)
+            InteractiveViewer(
+              maxScale: 10,
+              child: Image.network(
+                astronomyPictureModel!.hdurl!,
+                loadingBuilder:
+                    (
+                      BuildContext context,
+                      Widget child,
+                      ImageChunkEvent? loadingProgress,
+                    ) {
+                      if (loadingProgress != null) {
+                        return Center(
+                          child: CircularProgressIndicator(
+                            value: (loadingProgress.expectedTotalBytes != null)
+                                ? loadingProgress.cumulativeBytesLoaded /
+                                      loadingProgress.expectedTotalBytes!
+                                : null,
+                            backgroundColor: Colors.transparent,
+                            color: theme.palette.icon,
+                          ),
+                        );
+                      } else {
+                        return child;
+                      }
+                    },
+              ),
+            )
+          else
+            Center(
+              child: SvgPicture.asset(
+                "assets/icons/nasa_logo.svg",
+                colorFilter: ColorFilter.mode(
+                  theme.palette.shadow,
+                  BlendMode.modulate,
+                ),
+              ),
+            ),
           Padding(
-            padding: EdgeInsets.only(top: 24.h, bottom: 48.h),
+            padding: EdgeInsets.only(top: 24.r, bottom: 48.r),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 16.w),
+                  padding: EdgeInsets.symmetric(horizontal: 16.r),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -102,10 +130,10 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
                 SizedBox(
-                  width: 300.w,
+                  width: 300.r,
                   height: 60.r,
                   child: Row(
-                    spacing: 16.w,
+                    spacing: 16.r,
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [

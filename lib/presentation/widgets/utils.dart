@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import 'package:nasa_apod/presentation/themes/extension.dart';
@@ -22,5 +23,18 @@ void showLoading() {
 }
 
 void showError(String e) {
-  Get.dialog(AlertDialog(content: Text(e, textAlign: TextAlign.center)));
+  BuildContext context = Get.context as BuildContext;
+  CustomTheme theme = CustomTheme.of(context);
+  Get.dialog(
+    AlertDialog(
+      backgroundColor: theme.palette.bloc,
+      shape: theme.styles.defaultShapeBorder,
+      content: Text(
+        e,
+        textAlign: TextAlign.center,
+        style: theme.styles.alertTextStyle,
+      ),
+      contentPadding: EdgeInsets.all(24.r),
+    ),
+  );
 }

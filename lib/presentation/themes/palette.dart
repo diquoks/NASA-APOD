@@ -4,6 +4,7 @@ abstract class Palette {
   abstract Color background;
   abstract Color bloc;
   abstract Color icon;
+  abstract Color shadow;
   abstract Color text;
 }
 
@@ -13,6 +14,9 @@ class DarkPalette extends Palette {
 
   @override
   Color bloc = Color(0xFF111111);
+
+  @override
+  Color shadow = Color(0x33FFFFFF);
 
   @override
   Color icon = Color(0xFFFFFFFF);
