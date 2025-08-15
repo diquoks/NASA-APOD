@@ -145,7 +145,7 @@ class _HomePageState extends State<HomePage> {
                   width: 300.r,
                   height: 60.r,
                   child: Row(
-                    spacing: 16.r,
+                    spacing: 12.r,
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [

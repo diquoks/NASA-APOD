@@ -1,8 +1,8 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
+import "package:flutter/material.dart";
+import "package:flutter_screenutil/flutter_screenutil.dart";
+import "package:get/get.dart";
 
-import 'package:nasa_apod/presentation/themes/extension.dart';
+import "package:nasa_apod/presentation/themes/extension.dart";
 
 void showLoading() {
   BuildContext context = Get.context as BuildContext;

@@ -1,6 +1,6 @@
 ﻿# NASA APOD
 
-Мобильное приложение для получения Astronomic Picture of the Day
+Приложение для получения Astronomic Picture of the Day
 
 ### Контакты
 

@@ -13,13 +13,13 @@ class DarkPalette extends Palette {
   Color background = Color(0xFF000000);
 
   @override
-  Color bloc = Color(0xFF111111);
-
-  @override
-  Color shadow = Color(0x33FFFFFF);
+  Color bloc = Color(0xE6111111);
 
   @override
   Color icon = Color(0xFFFFFFFF);
+
+  @override
+  Color shadow = Color(0x33FFFFFF);
 
   @override
   Color text = Color(0xFFFFFFFF);
