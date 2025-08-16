@@ -10,8 +10,8 @@ void onResponse(Object? obj) {
   assert(true);
 }
 
-void onError(String e) {
-  fail(e);
+void onError((String, String) errorData) {
+  fail(errorData.$2);
 }
 
 void main() {

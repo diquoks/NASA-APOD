@@ -40,8 +40,8 @@ class _HomePageState extends State<HomePage> {
             astronomyPictureModel = response;
           });
         },
-        onError: (String e) {
-          showMessage(text: e);
+        onError: ((String, String) errorData) {
+          showMessage(title: errorData.$1, text: errorData.$2);
         },
       );
     });
@@ -133,7 +133,7 @@ class _HomePageState extends State<HomePage> {
                         dimension: 60.r,
                         child: CustomIconButton(
                           onPressed: () {
-                            showMessage(text: "Недоступно");
+                            showMessage(title: "Недоступно!", text: null);
                           },
                           icon: Icons.settings,
                         ),
@@ -160,8 +160,11 @@ class _HomePageState extends State<HomePage> {
                                     astronomyPictureModel = response;
                                   });
                                 },
-                                onError: (String e) {
-                                  showMessage(text: e);
+                                onError: ((String, String) errorData) {
+                                  showMessage(
+                                    title: errorData.$1,
+                                    text: errorData.$2,
+                                  );
                                 },
                               );
                             },
@@ -173,7 +176,7 @@ class _HomePageState extends State<HomePage> {
                         dimension: 60.r,
                         child: CustomIconButton(
                           onPressed: () {
-                            showMessage(text: "Недоступно");
+                            showMessage(title: "Недоступно!", text: null);
                           },
                           icon: Icons.calendar_month,
                         ),

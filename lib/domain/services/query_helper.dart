@@ -9,7 +9,7 @@ class QueryHelper {
   Future<void> request<ResponseT>({
     required Future<ResponseT> Function() request,
     required void Function(ResponseT) onResponse,
-    required void Function(String) onError,
+    required void Function((String, String)) onError,
   }) async {
     try {
       startLoading();
@@ -22,14 +22,26 @@ class QueryHelper {
     }
   }
 
-  String castError(Exception e) {
+  (String, String) castError(Exception e) {
+    String? castedError;
     if (e is DioException) {
       if (e.response != null) {
-        if (e.response!.statusCode! == 403) {
-          return "API NASA может нестабильно работать в России,\nпопробуйте использовать VPN!";
+        if (e.response!.statusCode! ~/ 100 == 4) {
+          castedError =
+              "API NASA может нестабильно работать в России,\nпопробуйте использовать VPN!";
+        } else if (e.response!.statusCode! ~/ 100 == 5) {
+          castedError =
+              "API NASA APOD временно недоступен,\nпопробуйте позже ещё раз!";
         }
       }
     }
-    return e.toString();
+    if (castedError != null) {
+      return ("Возникла ошибка!", castedError);
+    } else {
+      return (
+        "Возникла непредвиденная ошибка!",
+        "${e.toString()}\n\nЕсли ошибка повторится - сообщите о ней разработчику!",
+      );
+    }
   }
 }
