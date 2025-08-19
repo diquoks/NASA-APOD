@@ -5,9 +5,7 @@ import "package:flutter_svg/flutter_svg.dart";
 import "package:nasa_apod/presentation/themes/extension.dart";
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
-  final String text;
-
-  const CustomAppBar({super.key, required this.text});
+  const CustomAppBar({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +27,10 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
               width: 50.r,
               height: 42.r,
             ),
-            Text(text, style: theme.styles.appBarTextStyle),
+            Text(
+              "Astronomy Picture of the Day",
+              style: theme.styles.appBarTextStyle,
+            ),
           ],
         ),
       ),

@@ -19,8 +19,19 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
+  late final AnimationController _controller = AnimationController(
+    duration: const Duration(milliseconds: 3000),
+    vsync: this,
+  )..repeat();
+
+  late final Animation<double> _animation = CurvedAnimation(
+    parent: _controller,
+    curve: Curves.linear,
+  );
+
   AstronomyPictureModel? astronomyPictureModel;
+  DateTime selectedDate = DateTime.now();
   QueryUseCase queryUseCase = QueryUseCase(
     startLoading: () {
       showLoading();
@@ -51,7 +62,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     CustomTheme theme = CustomTheme.of(context);
     return Scaffold(
-      appBar: CustomAppBar(text: "Astronomy Picture of the Day"),
+      appBar: CustomAppBar(),
       backgroundColor: theme.palette.background,
       resizeToAvoidBottomInset: false,
       body: Stack(
@@ -71,13 +82,20 @@ class _HomePageState extends State<HomePage> {
                     ) {
                       if (loadingProgress != null) {
                         return Center(
-                          child: CircularProgressIndicator(
-                            value: (loadingProgress.expectedTotalBytes != null)
-                                ? loadingProgress.cumulativeBytesLoaded /
-                                      loadingProgress.expectedTotalBytes!
-                                : null,
-                            backgroundColor: Colors.transparent,
-                            color: theme.palette.icon,
+                          child: SizedBox.square(
+                            dimension: 48.r,
+                            child: RotationTransition(
+                              turns: _animation,
+                              child: CircularProgressIndicator(
+                                value:
+                                    (loadingProgress.expectedTotalBytes != null)
+                                    ? loadingProgress.cumulativeBytesLoaded /
+                                          loadingProgress.expectedTotalBytes!
+                                    : null,
+                                backgroundColor: theme.palette.shadow,
+                                color: theme.palette.icon,
+                              ),
+                            ),
                           ),
                         );
                       } else {
@@ -90,6 +108,8 @@ class _HomePageState extends State<HomePage> {
             Center(
               child: SvgPicture.asset(
                 "assets/icons/nasa_logo.svg",
+                width: 128.r,
+                height: 128.r,
                 colorFilter: ColorFilter.mode(
                   theme.palette.shadow,
                   BlendMode.modulate,
@@ -119,6 +139,7 @@ class _HomePageState extends State<HomePage> {
                           child: CustomIconButton(
                             onPressed: (astronomyPictureModel != null)
                                 ? () {
+                                    // TODO: Consider implementing YandexTranslate
                                     showMessage(
                                       title: astronomyPictureModel!.title,
                                       text: astronomyPictureModel!.explanation,
@@ -155,6 +176,7 @@ class _HomePageState extends State<HomePage> {
                           child: CustomTextButton(
                             onPressed: () {
                               queryUseCase.getApod(
+                                date: selectedDate.toString().split(" ")[0],
                                 onResponse: (AstronomyPictureModel response) {
                                   setState(() {
                                     astronomyPictureModel = response;
@@ -175,8 +197,15 @@ class _HomePageState extends State<HomePage> {
                       SizedBox.square(
                         dimension: 60.r,
                         child: CustomIconButton(
-                          onPressed: () {
-                            showMessage(title: "Недоступно!", text: null);
+                          onPressed: () async {
+                            selectedDate =
+                                await showDatePicker(
+                                  context: context,
+                                  initialDate: selectedDate,
+                                  firstDate: DateTime(1995, 6, 16),
+                                  lastDate: DateTime.now(),
+                                ) ??
+                                selectedDate;
                           },
                           icon: Icons.calendar_month,
                         ),

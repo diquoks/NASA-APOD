@@ -15,9 +15,12 @@ void showLoading() {
         insetPadding: EdgeInsets.zero,
         shape: BoxBorder.fromBorderSide(BorderSide.none),
         child: Center(
-          child: CircularProgressIndicator(
-            backgroundColor: Colors.transparent,
-            color: theme.palette.icon,
+          child: SizedBox.square(
+            dimension: 48.r,
+            child: CircularProgressIndicator(
+              backgroundColor: theme.palette.shadow,
+              color: theme.palette.icon,
+            ),
           ),
         ),
       ),

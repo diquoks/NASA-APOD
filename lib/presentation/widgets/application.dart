@@ -7,7 +7,9 @@ import "package:nasa_apod/presentation/themes/extension.dart";
 import "package:nasa_apod/presentation/themes/palette.dart";
 
 class Application extends StatelessWidget {
-  const Application({super.key});
+  final Palette darkPalette = DarkPalette();
+
+  Application({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,10 +18,14 @@ class Application extends StatelessWidget {
       builder: (BuildContext context, Widget? widget) {
         return GetMaterialApp(
           title: "NASA APOD",
+          // TODO: Update ColorScheme
           theme: ThemeData.dark().copyWith(
             brightness: Brightness.dark,
-            colorScheme: ColorScheme.fromSeed(seedColor: Colors.grey),
-            extensions: [CustomTheme(palette: DarkPalette())],
+            colorScheme: ColorScheme.dark(
+              primary: darkPalette.icon,
+              surface: darkPalette.bloc,
+            ),
+            extensions: [CustomTheme(palette: darkPalette)],
           ),
           home: HomePage(),
           debugShowCheckedModeBanner: false,

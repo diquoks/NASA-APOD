@@ -19,7 +19,7 @@ class DarkPalette extends Palette {
   Color icon = Color(0xFFFFFFFF);
 
   @override
-  Color shadow = Color(0x33FFFFFF);
+  Color shadow = Color(0x1AFFFFFF);
 
   @override
   Color text = Color(0xFFFFFFFF);
