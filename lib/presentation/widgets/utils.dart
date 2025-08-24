@@ -3,6 +3,7 @@ import "package:flutter_screenutil/flutter_screenutil.dart";
 import "package:get/get.dart";
 
 import "package:nasa_apod/presentation/themes/extension.dart";
+import "package:nasa_apod/presentation/widgets/custom_progress_indicator.dart";
 
 void showLoading() {
   BuildContext context = Get.context as BuildContext;
@@ -11,16 +12,13 @@ void showLoading() {
     PopScope(
       canPop: false,
       child: Dialog(
-        backgroundColor: Colors.transparent,
+        backgroundColor: theme.palette.transparent,
         insetPadding: EdgeInsets.zero,
         shape: BoxBorder.fromBorderSide(BorderSide.none),
         child: Center(
           child: SizedBox.square(
             dimension: 48.r,
-            child: CircularProgressIndicator(
-              backgroundColor: theme.palette.shadow,
-              color: theme.palette.icon,
-            ),
+            child: CustomProgressIndicator(),
           ),
         ),
       ),

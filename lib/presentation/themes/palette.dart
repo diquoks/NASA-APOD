@@ -6,6 +6,7 @@ abstract class Palette {
   abstract Color icon;
   abstract Color shadow;
   abstract Color text;
+  Color transparent = Colors.transparent;
 }
 
 class DarkPalette extends Palette {

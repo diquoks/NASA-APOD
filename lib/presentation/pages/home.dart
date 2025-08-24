@@ -9,6 +9,7 @@ import "package:nasa_apod/domain/use_cases/query_use_case.dart";
 import "package:nasa_apod/presentation/themes/extension.dart";
 import "package:nasa_apod/presentation/widgets/custom_app_bar.dart";
 import "package:nasa_apod/presentation/widgets/custom_icon_button.dart";
+import "package:nasa_apod/presentation/widgets/custom_progress_indicator.dart";
 import "package:nasa_apod/presentation/widgets/custom_text_button.dart";
 import "package:nasa_apod/presentation/widgets/utils.dart";
 
@@ -19,19 +20,9 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
-  late final AnimationController _controller = AnimationController(
-    duration: const Duration(milliseconds: 3000),
-    vsync: this,
-  )..repeat();
-
-  late final Animation<double> _animation = CurvedAnimation(
-    parent: _controller,
-    curve: Curves.linear,
-  );
-
+class _HomePageState extends State<HomePage> {
   AstronomyPictureModel? astronomyPictureModel;
-  DateTime selectedDate = DateTime.now();
+  DateTime? selectedDate;
   QueryUseCase queryUseCase = QueryUseCase(
     startLoading: () {
       showLoading();
@@ -84,17 +75,12 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                         return Center(
                           child: SizedBox.square(
                             dimension: 48.r,
-                            child: RotationTransition(
-                              turns: _animation,
-                              child: CircularProgressIndicator(
-                                value:
-                                    (loadingProgress.expectedTotalBytes != null)
-                                    ? loadingProgress.cumulativeBytesLoaded /
-                                          loadingProgress.expectedTotalBytes!
-                                    : null,
-                                backgroundColor: theme.palette.shadow,
-                                color: theme.palette.icon,
-                              ),
+                            child: CustomProgressIndicator(
+                              value:
+                                  (loadingProgress.expectedTotalBytes != null)
+                                  ? loadingProgress.cumulativeBytesLoaded /
+                                        loadingProgress.expectedTotalBytes!
+                                  : null,
                             ),
                           ),
                         );
@@ -142,7 +128,8 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                     // TODO: Consider implementing YandexTranslate
                                     showMessage(
                                       title: astronomyPictureModel!.title,
-                                      text: astronomyPictureModel!.explanation,
+                                      text: astronomyPictureModel!.explanation
+                                          .replaceAll("  ", "\n\n"),
                                     );
                                   }
                                 : null,
@@ -176,7 +163,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                           child: CustomTextButton(
                             onPressed: () {
                               queryUseCase.getApod(
-                                date: selectedDate.toString().split(" ")[0],
+                                date: selectedDate?.toString().split(" ")[0],
                                 onResponse: (AstronomyPictureModel response) {
                                   setState(() {
                                     astronomyPictureModel = response;
