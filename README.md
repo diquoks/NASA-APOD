@@ -1,14 +1,24 @@
 ﻿# NASA APOD
 
-Приложение для получения Astronomic Picture of the Day
+#### Приложение для получения Astronomic Picture of the Day
 
-### Контакты
+---
+
+## Оглавление
+
+- [Контакты](#контакты)
+    - [Связь с разработчиком](#связь-с-разработчиком)
+    - [Прочие ссылки](#прочие-ссылки)
+
+---
+
+## Контакты
 
 #### Связь с разработчиком
 
-[Telegram для связи](https://t.me/diquoks)\
-[Почта для связи](mailto:diquoks@yandex.ru)
+- [Telegram для связи](https://t.me/diquoks)
+- [Почта для связи](mailto:diquoks@yandex.ru)
 
 #### Прочие ссылки
 
-[Telegram-канал с новостями](https://t.me/diquoks_channel)
+- [Telegram-канал с новостями](https://t.me/diquoks_channel)
