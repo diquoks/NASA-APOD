@@ -64,7 +64,7 @@ class _HomePageState extends State<HomePage> {
             InteractiveViewer(
               maxScale: 10,
               child: Image.network(
-                astronomyPictureModel!.hdurl!,
+                astronomyPictureModel!.urlHD!,
                 loadingBuilder:
                     (
                       BuildContext context,

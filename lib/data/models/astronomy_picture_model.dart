@@ -2,7 +2,7 @@ class AstronomyPictureModel {
   final String? copyright;
   final String date;
   final String explanation;
-  final String? hdurl;
+  final String? urlHD;
   final String mediaType;
   final String serviceVersion;
   final String title;
@@ -12,7 +12,7 @@ class AstronomyPictureModel {
     required this.copyright,
     required this.date,
     required this.explanation,
-    required this.hdurl,
+    required this.urlHD,
     required this.mediaType,
     required this.serviceVersion,
     required this.title,
@@ -23,7 +23,7 @@ class AstronomyPictureModel {
     : copyright = json["copyright"],
       date = json["date"],
       explanation = json["explanation"],
-      hdurl = json["hdurl"],
+      urlHD = json["hdurl"],
       mediaType = json["media_type"],
       serviceVersion = json["service_version"],
       title = json["title"],

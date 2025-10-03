@@ -1,8 +1,8 @@
 import "package:dio/dio.dart";
 
 class QueryHelper {
-  final Function() startLoading;
-  final Function() endLoading;
+  final void Function() startLoading;
+  final void Function() endLoading;
 
   QueryHelper({required this.startLoading, required this.endLoading});
 

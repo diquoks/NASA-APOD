@@ -3,7 +3,7 @@ import "package:flutter/material.dart";
 import "package:nasa_apod/presentation/themes/extension.dart";
 
 class CustomTextButton extends StatefulWidget {
-  final Function()? onPressed;
+  final void Function()? onPressed;
   final String text;
 
   const CustomTextButton({
@@ -23,7 +23,11 @@ class _CustomTextButtonState extends State<CustomTextButton> {
     return FilledButton(
       onPressed: widget.onPressed,
       style: theme.styles.textButtonBorder,
-      child: Text(widget.text, textAlign: TextAlign.center, style: theme.styles.buttonTextStyle),
+      child: Text(
+        widget.text,
+        textAlign: TextAlign.center,
+        style: theme.styles.buttonTextStyle,
+      ),
     );
   }
 }

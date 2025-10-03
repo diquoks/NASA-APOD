@@ -4,7 +4,7 @@ import "package:flutter_screenutil/flutter_screenutil.dart";
 import "package:nasa_apod/presentation/themes/extension.dart";
 
 class CustomIconButton extends StatefulWidget {
-  final Function()? onPressed;
+  final void Function()? onPressed;
   final IconData icon;
 
   const CustomIconButton({

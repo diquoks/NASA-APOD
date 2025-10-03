@@ -3,8 +3,8 @@ import "package:nasa_apod/data/repository/client.dart";
 import "package:nasa_apod/domain/services/query_helper.dart";
 
 class QueryUseCase {
-  final Function() startLoading;
-  final Function() endLoading;
+  final void Function() startLoading;
+  final void Function() endLoading;
   final QueryHelper helper;
   final Client client = Client();
 
@@ -17,8 +17,8 @@ class QueryUseCase {
     String? endDate,
     int? count,
     bool? thumbs,
-    required Function(AstronomyPictureModel) onResponse,
-    required Function((String, String)) onError,
+    required void Function(AstronomyPictureModel) onResponse,
+    required void Function((String, String)) onError,
   }) async {
     await helper.request(
       request: () => client.getApod(
