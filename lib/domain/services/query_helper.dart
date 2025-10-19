@@ -25,10 +25,13 @@ class QueryHelper {
   (String, String) castError(Exception e) {
     String? castedError;
     if (e is DioException) {
-      if (e.response != null) {
-        if (e.response!.statusCode! ~/ 100 == 4) {
+      if (e.response != null && e.response!.statusCode != null) {
+        if (e.response!.statusCode! == 404) {
           castedError =
-              "API NASA может нестабильно работать в России,\nпопробуйте использовать VPN! (${e.response!.statusCode})";
+              "APOD для выбранной даты не найден! (${e.response!.statusCode})";
+        } else if (e.response!.statusCode! ~/ 100 == 4) {
+          castedError =
+              "API NASA могут нестабильно работать в России,\nпопробуйте использовать VPN! (${e.response!.statusCode})";
         } else if (e.response!.statusCode! ~/ 100 == 5) {
           castedError =
               "API NASA APOD временно недоступен,\nпопробуйте позже ещё раз! (${e.response!.statusCode})";

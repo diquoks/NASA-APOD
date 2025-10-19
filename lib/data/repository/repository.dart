@@ -1,9 +1,11 @@
 import "package:dio/dio.dart";
 
 import "package:nasa_apod/data/models/astronomy_picture_model.dart";
+import "package:nasa_apod/data/storage/storage.dart";
 
-abstract class Repository {
-  final Dio dio = Dio();
+abstract interface class Repository {
+  abstract final Dio dio;
+  abstract final Storage storage;
   abstract final String apiUrl;
 
   Future<AstronomyPictureModel> getApod({

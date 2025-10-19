@@ -4,8 +4,12 @@ import "package:nasa_apod/data/models/astronomy_picture_model.dart";
 import "package:nasa_apod/data/repository/repository.dart";
 import "package:nasa_apod/data/storage/storage.dart";
 
-class Client extends Repository {
-  final Storage storage = mainStorage;
+class Client implements Repository {
+  @override
+  Dio get dio => Dio();
+
+  @override
+  Storage get storage => mainStorage;
 
   @override
   String get apiUrl => "https://api.nasa.gov/planetary/apod";
